@@ -1,0 +1,189 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package code.yankton_bank.impl;
+
+import code.yankton_bank.GameDescription;
+import code.yankton_bank.type.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+* Descrizione e stato di gioco di Yankton Bank.
+* - Inizializza stanze, oggetti, collegamenti
+* - Mantiene lo stato del player, inventario, punteggio
+* - Espone metodi per logiche particolari (es. disattivare telecamere, forzare serrature)
+*/
+
+public class GameDesc implements GameDescription {
+    
+    private Player player;
+    private final List<Command> commands = new ArrayList<>();
+    
+    private Room ingresso, stanzinoPulizie, salaSorveglianza, corridoio, caveau, uscita;
+
+    private boolean lockerState = false;
+    private boolean cameraState = true;
+    private boolean securityState = true;
+    private boolean sensorState = false;
+    private boolean caveauState = false;
+    
+    private int dangerLVL = 0;
+    private int score = 0;
+    private final Set<Integer> visited = new HashSet<>();
+    
+    @Override
+    public void onEnter(Room r) {
+        if (r != null && visited.add(r.getId())) {
+            addScore(5); // Incrementa il punteggio per ogni stanza visitata per la prima volta
+        }
+    }
+    
+    @Override
+    public void init() {
+        player = new Player("Michael De Santa");
+        
+        // Inizializzazione delle stanze
+        ingresso = new Room(
+            1, false, "Ingresso",
+            "Ingresso posteriore dell'edificio, non si sa mai.");
+        stanzinoPulizie = new Room(
+            2, true, "Stanzino delle Pulizie",
+            "Uno stanzino con attrezzature per le pulizie. Potrebbe contenere qualcosa di utile.");
+        salaSorveglianza = new Room(
+            3, true, "Sala Telecamere",
+            "Una stanza piena di monitor e terminali. Devi trovare il terminale corretto per disattivare le telecamere.");
+        corridoio = new Room(
+            4,false, "Corridoio",
+            "Un lungo corridoio con diverse porte che conducono a zone riservate.");
+        caveau = new Room(
+            6,false, "Caveau",
+            "Il caveau della banca. Devi forzare la serratura per accedere al bottino.");
+        uscita = new Room(
+            7,false, "Uscita di Emergenza",
+            "Il punto di fuga. Devi tornare qui con il bottino prima che il livello di pericolo raggiunga il massimo.");
+        
+        //Mappa
+        ingresso.setNorth(stanzinoPulizie);
+
+        stanzinoPulizie.setSouth(ingresso);
+        stanzinoPulizie.setNorth(salaSorveglianza);
+        
+        salaSorveglianza.setSouth(stanzinoPulizie);
+        salaSorveglianza.setEast(corridoio);
+        
+        corridoio.setWest(salaSorveglianza);
+        corridoio.setNorth(caveau);
+        
+        caveau.setSouth(corridoio);
+
+        // Oggetti
+        AdvObject pinze = new AdvObject(101, "Pinze", "Pinze utili per tagliare fili.");
+
+        AdvObject grimaldello = new AdvObject(102, "Grimaldello", "Utile per forzare porte.");
+
+        AdvObject telecamera = new AdvObject(1, "Telecamera di sorveglianza.\n" +
+         "Converebbe tagliare il cavo di collegamento prima di provare ad entrare.", "");
+        ingresso.addObject(telecamera);
+        telecamera.setPickupable(false);
+        telecamera.setVisible(true);
+
+        AdvObject armadietto = new AdvObject(103, "Armadietto", "Un armadietto chiuso a chiave.");
+        stanzinoPulizie.addObject(armadietto);
+        armadietto.setPickupable(false);
+
+        AdvObject chiavi = new AdvObject(104, "Chiavi", "Un mazzo consistente di chiavi.");
+        stanzinoPulizie.addObject(chiavi);
+        chiavi.setPickupable(true);
+        chiavi.setVisible(false);
+
+        AdvObject terminale = new AdvObject(105, "Terminale", "Un terminale per il controllo delle telecamere.");
+        salaSorveglianza.addObject(terminale);
+        terminale.setPickupable(false);
+        terminale.setVisible(true);
+
+        AdvObject t1 = new AdvObject(106, "T1", "Un terminale per il controllo delle telecamere.");
+        salaSorveglianza.addObject(t1);
+        t1.setPickupable(false);
+        t1.setVisible(false);
+
+        AdvObject t2 = new AdvObject(107, "T2", "Un terminale per il controllo delle telecamere.");
+        salaSorveglianza.addObject(t2);
+        t2.setPickupable(false);
+        t2.setVisible(false);
+
+        AdvObject tastierino = new AdvObject(108, "Tastierino", "Un tastierino per inserire un codice.");
+        corridoio.addObject(tastierino);
+        tastierino.setPickupable(false);
+
+        // Comandi
+        commands.clear();
+        commands.add(new Command("nord", CommandType.NORTH));
+        commands.add(new Command("sud", CommandType.SOUTH));
+        commands.add(new Command("est", CommandType.EAST));
+        commands.add(new Command("ovest", CommandType.WEST));
+        commands.add(new Command("guarda", CommandType.LOOK));
+        commands.add(new Command("prendi", CommandType.PICK_UP));
+        commands.add(new Command("usa", CommandType.USE));
+        commands.add(new Command("apri", CommandType.OPEN));
+        commands.add(new Command("inventario", CommandType.INVENTORY));
+        commands.add(new Command("aiuto", CommandType.HELP));
+        commands.add(new Command("fine", CommandType.END));
+
+        player.setCurrentRoom(ingresso);
+        player.getInventory().add(pinze);
+        player.getInventory().add(grimaldello);
+    }
+    
+    public Room getIngresso() { return ingresso; }
+    public Room getStanzinoPulizie() { return stanzinoPulizie; }
+    public Room getSalaSorveglianza() { return salaSorveglianza; }
+    public Room getCorridoio() { return corridoio; }
+    public Room getCaveau() { return caveau; }
+    public Room getUscita() { return uscita; }
+    
+    // Metodo per incrementare il livello di pericolo
+    public void incrementDanger(int level) {
+        dangerLVL += level;
+        if (dangerLVL >= 10) {
+            getEnding();
+        }
+    }
+    
+    // Metodo per punteggio
+    public void addScore(int points) { score += points; }
+    public void decreaseScore(int points) { score -= points; }
+    public int getDangerLVL() { return dangerLVL; }
+    public int getScore() { return score; }
+    
+    // Boolean methods
+    public boolean isLockerOpen() { return lockerState; }
+    public boolean isCameraEnabled() { return cameraState; }
+    public boolean isCamerasEnabled() { return securityState; }
+    public boolean isSensorsDisabled() { return sensorState; }
+    public boolean isCaveauOpen() { return caveauState; }
+
+    // Setter
+    public void setLocker(boolean b) { this.lockerState = b; }
+    public void setCamera(boolean b) { this.cameraState = b; }
+    public void setCameras(boolean b) { this.securityState = b; }
+    public void setSensors(boolean b) { this.sensorState = b; }
+    public void setCaveauOpen(boolean b) { this.caveauState = b; }
+
+    // Getter
+    
+    @Override public String getIntro() 
+        { return "============ Città di Yankton, Texas, 2:30 AM ==============\n\n" +
+            "Hai scoperto che un noto trafficante nasconde la sua riserva d'oro in una banca abbandonata.\n" +
+            "Speriamo lo sia per davvero, siccome ora lo dovrai rubare.\n" +
+            "Sarà pure trascurata, ma l'impianto e il sistema di sicurezza sembra essere tutt'ora attivo.\n" + 
+            "Cerca di essere il più discreto possibile.\n\n"; }
+    @Override public String getEnding() { return "La polizia ti ha catturato! Hai perso."; }
+    @Override public List<Command> getCommands() { return commands; }
+    @Override public Player getPlayer() { return player; }
+}
+
