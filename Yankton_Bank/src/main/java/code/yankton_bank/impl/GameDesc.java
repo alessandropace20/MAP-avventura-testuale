@@ -83,9 +83,14 @@ public class GameDesc implements GameDescription {
         AdvObject pinze = new AdvObject(101, "Pinze", "Pinze utili per tagliare fili.");
 
         AdvObject grimaldello = new AdvObject(102, "Grimaldello", "Utile per forzare porte.");
+        
+        AdvObject porta = new AdvObject(0, "Porta", "");
+        ingresso.addObject(porta);
+        porta.setPickupable(false);
+        porta.setVisible(true);
 
-        AdvObject telecamera = new AdvObject(1, "Telecamera di sorveglianza.\n" +
-            "Converebbe tagliare il cavo di collegamento prima di provare ad entrare.", "");
+        AdvObject telecamera = new AdvObject(1, "Telecamera di sorveglianza.",
+            "\nConverebbe tagliare il cavo di collegamento prima di provare ad entrare.");
         ingresso.addObject(telecamera);
         telecamera.setPickupable(false);
         telecamera.setVisible(true);
@@ -118,11 +123,11 @@ public class GameDesc implements GameDescription {
         caveau.addObject(tastierino);
         tastierino.setPickupable(false);
 
-        AdvObject blindata = new AdvObject(109, "Blindata", "");
+        AdvObject blindata = new AdvObject(109, "Porta Blindata", "");
         caveau.addObject(blindata);
         blindata.setPickupable(false);
 
-        AdvObject cassetta = new AdvObject(109, "Cassetta di sicurezza", "La cassetta di sicurezza... dovremmo esserci.");
+        AdvObject cassetta = new AdvObject(109, "Cassetta", "La cassetta di sicurezza... dovremmo esserci.");
         caveau.addObject(cassetta);
         cassetta.setPickupable(false);
         cassetta.setVisible(false);

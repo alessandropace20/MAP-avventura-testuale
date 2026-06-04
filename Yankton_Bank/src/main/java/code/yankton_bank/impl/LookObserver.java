@@ -19,9 +19,10 @@ public class LookObserver implements GameObserver {
     public void update(ParserOutput p, Object g) {
         if (!(g instanceof GameDesc game)) return;
         if (p.getCommand() == null || p.getCommand().getType() != CommandType.LOOK) return;
-
+        System.out.println("\n======================================================\n");
         Room cur = game.getPlayer().getCurrentRoom();
-        System.out.println("== " + cur.getName() + " ==");
+        
+        System.out.println("Ti trovi in: " + cur.getName() + "\n");
         System.out.println(cur.getDescription());
 
         if (!cur.getObjects().isEmpty()) {
@@ -32,5 +33,6 @@ public class LookObserver implements GameObserver {
                 }
             }
         }
+        System.out.println("\n======================================================\n");
     }
 }

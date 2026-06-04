@@ -8,7 +8,6 @@ import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
 import code.yankton_bank.util.MusicHandler; // [AUDIO]
 
-
 /**
  * Observer che gestisce i comandi di utilizzo.
  * - Permette di usare oggetti dell’inventario o presenti nella stanza
@@ -37,8 +36,9 @@ public class UseObserver implements GameObserver {
             if (currentPlayer.getInventory().containsByName("Pinze")) {
                 if (currentRoom == game.getIngresso()) {
 
-                    System.out.println("======================================================");
+                    System.out.println("\n======================================================\n");
                     System.out.println("Usi le pinze per tagliare i cavi elettrici esterni.\nTelecamera disabilitata.");
+                    System.out.println("\n======================================================\n");
                     game.addScore(15);
                     game.setCamera(false);
                     return;
@@ -55,9 +55,9 @@ public class UseObserver implements GameObserver {
         if (name.equals("grimaldello")){
             if (currentPlayer.getInventory().containsByName("Grimaldello")) {
                 if (currentRoom == game.getIngresso()) {
-
-                    System.out.println("======================================================");
+                    System.out.println("\n======================================================\n");
                     System.out.println("Usi il grimaldello per forzare la porta.\nPorta nord sbloccata");
+                    System.out.println("\n======================================================\n");
                     game.getStanzinoPulizie().setLocked(false);
 
                     if(game.isCameraEnabled()){
@@ -69,9 +69,11 @@ public class UseObserver implements GameObserver {
                     return;
                 }
                 if (currentRoom == game.getCaveau()) {
-                        System.out.println("Sul serio vuoi aprire una porta blindata da 2 quintali con un grimaldello?\n" +
-                        "Devi trovare un altro modo per aprirla.\nTi converrebbe disattivare i sistemi di sicurezza, anche se non mi sembri un tipo sveglio.");
-                        return;
+                    System.out.println("\n======================================================\n");
+                    System.out.println("Sul serio vuoi aprire una porta blindata da 2 quintali con un grimaldello?\n" +
+                    "Devi trovare un altro modo per aprirla.\nTi converrebbe disattivare i sistemi di sicurezza, anche se non mi sembri un tipo sveglio.");
+                    System.out.println("\n======================================================\n");
+                    return;
                 }
             }
             else {
@@ -84,7 +86,7 @@ public class UseObserver implements GameObserver {
         if (name.equals("chiavi")) {
             if (currentPlayer.getInventory().containsByName("Chiavi")) {
                 if(currentRoom == game.getStanzinoPulizie()) {
-                    System.out.println("======================================================");
+                    System.out.println("\n======================================================\n");
                     if(game.getSalaSorveglianza().isLocked()){
                         System.out.println("\nPorta nord sbloccata.");
                         game.getSalaSorveglianza().setLocked(false);
@@ -93,11 +95,14 @@ public class UseObserver implements GameObserver {
                     else {
                         System.out.println("\nPorta già sbloccata.");
                     }
+                    System.out.println("\n======================================================\n");
                     return;
                 }
                 if(currentRoom == game.getCaveau()) {
+                    System.out.println("\n======================================================\n");
                     System.out.println("Non credo che in un mazzo di chiavi trovato in uno stanzino delle pulizie, ci sia una chiave che possa aprire" +
                         " una porta blindata spessa più del tuo cervello, genio...");
+                    System.out.println("\n======================================================\n");
                     return;
                 }
             }
@@ -110,17 +115,17 @@ public class UseObserver implements GameObserver {
         // 2.1 - Usare il terminale principale ()
         if (name.equals("terminale")) {
             if (currentRoom == game.getSalaSorveglianza()) {
+                System.out.println("\n======================================================\n");
                 if (game.isSecurityEnabled()) {
-                    System.out.println("======================================================");
                     System.out.println("Sullo schermo c'è scritto:\n'Accedere al terminale di sblocco':\n-T1\n-T2\n");
-                    System.out.println("Deve essere uno di quei vecchi sistemi.. scegli quello sbagliato e sei fregato.");
-                
+                    System.out.println("Deve essere uno di quei vecchi sistemi.. scegli quello sbagliato e scatterà l'allarme.");                
                     AdvObject.findInRoom(currentRoom, "T1").setVisible(true);
                     AdvObject.findInRoom(currentRoom, "T2").setVisible(true);
                 } 
                 else {
                     System.out.println("Inutile, le telecamere sono già disattivate.");
                 }
+                System.out.println("\n======================================================\n");
                 return;
             }
             else {
@@ -134,6 +139,10 @@ public class UseObserver implements GameObserver {
         if (name.equals("t1")) {
             if (currentRoom == game.getSalaSorveglianza()) {
                 if(AdvObject.findInRoom(game.getSalaSorveglianza(), "T1").isVisible()){
+                    System.out.println("\n======================================================\n");
+                    System.out.println("Diamine! Hai fatto scattare l'allarme!\n\n" + 
+                        "GAME OVER");
+                    System.out.println("\n======================================================\n");
                     EndObserver.finish(game, false);
                     return;
                 }
@@ -149,15 +158,16 @@ public class UseObserver implements GameObserver {
         if (name.equals("t2")) {
             if (currentRoom == game.getSalaSorveglianza()) {
                 if(AdvObject.findInRoom(currentRoom, "T2").isVisible()) {
+                    System.out.println("\n======================================================\n");
                     if (game.isSecurityEnabled()) {
                         game.setSecurity(false);
                         game.addScore(10);
-                        System.out.println("======================================================");
                         System.out.println("Terminale corretto per disattivare le telecamere. Ora puoi muoverti senza essere visto.");
                     }
                     else {
                         System.out.println("Le telecamere sono già disattivate.");
                     }
+                    System.out.println("\n======================================================\n");
                     return;
                 }
             }
@@ -171,14 +181,16 @@ public class UseObserver implements GameObserver {
         // 3.0 - Usare il tastierino del caveau
         if (name.equals("tastierino")) {
             if (currentRoom == game.getCaveau()) {
+                System.out.println("\n======================================================\n");
                 if(game.isSecurityEnabled()) {
                     System.out.println("Il tastierino è attivo, ma inutile senza il codice d'accesso. Ti conviene disabilitare le misure di sicurezza.");
-                    return;
                 }
                 else {
                     System.out.println("Hai già disabilitato le misure di sicurezza, la porta del caveau è sbloccata.");
                     return;
                 }
+                System.out.println("\n======================================================\n");
+                return;
             }
             else {
                 System.out.println("Non c'è nessun tastierino qui.");

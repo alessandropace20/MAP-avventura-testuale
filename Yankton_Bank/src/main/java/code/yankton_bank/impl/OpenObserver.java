@@ -33,14 +33,16 @@ public class OpenObserver implements GameObserver {
         String name = safeName(currentObj);
 
         if (name.equals("porta") && currentRoom == game.getIngresso()) {
+            System.out.println("\n======================================================\n");
             if (game.isLockerOpen()) {
                 System.out.println("La porta è già aperta.");
-                return;
             }
-            else{
-                System.out.println("La porta è bloccata. Forse c'è un modo per sbloccarla.");
-                return;
+            else {
+                System.out.println("La porta d'ingresso è, chiaramente, bloccata." + 
+                    "\nControlla nel tuo inventario se hai qualcosa per scassinarla. Assicurati di farlo in sicurezza.");
             }
+            System.out.println("\n======================================================\n");
+            return;
         }
 
         if (name.equals("armadietto") && currentRoom == game.getStanzinoPulizie()) {
@@ -48,38 +50,42 @@ public class OpenObserver implements GameObserver {
                 System.out.println("Hai già aperto l'armadietto. C'erano le chiavi dell'edificio.");
                 return;
             }
-            else{
+            else {
                 game.setLocker(true);
                 AdvObject keys = findInRoom(currentRoom, "Chiavi");
                 if (keys != null) {
                     keys.setVisible(true);
                 }
                 game.addScore(5);
+                System.out.println("\n======================================================\n");
                 System.out.println("Forzandolo, riesci ad aprire l'armadietto: dentro trovi un mazzo di chiavi.");
+                System.out.println("\n======================================================\n");
                 return;
             }
         }
 
-        if (name.equals("blindata")) {
+        if (name.equals("porta blindata")) {
             if (currentRoom == game.getCaveau()) {
+                System.out.println("\n======================================================\n");
                 if (game.isSecurityEnabled()) {
                     System.out.println("La porta blindata è bloccata elettronicamente.\n" +
                         "Non sembra esserci un modo senza disattivare le misure di sicurezza.");
-                    return;
                 }
                 else {
                     System.out.println("Essendo che hai disattivato le misure di sicurezza, la porta blindata si apre senza problemi.\n"+
                         "Da ora conviene non fare stupidaggini, trova la riserva d'oro e fuggi dall'edificio.");
+                        System.out.println("---");
                     AdvObject.findInRoom(currentRoom, "cassetta").setVisible(true);
-                    AdvObject.findInRoom(currentRoom, "oro").setVisible(true);
-                    return;
                 }
+                System.out.println("\n======================================================\n");
+                return;
             }
         }
 
         if (name.equals("cassetta")) {
             if (currentRoom == game.getCaveau()) {
                 
+                return;
             }
         }
 

@@ -47,7 +47,9 @@ public class PickUpObserver implements GameObserver {
         pl.getInventory().add(inRoom);
         System.out.println("Raccolto: " + inRoom.getName());
         if(name == "oro") {
+            System.out.println("\n======================================================\n");
             System.out.println("Hai raccolto l'oro, torna indietro e fuggi dall'edificio!");
+            System.out.println("\n======================================================\n");
         }
         MusicHandler.playSfx("/audio/pickup.wav"); // [AUDIO]
 
