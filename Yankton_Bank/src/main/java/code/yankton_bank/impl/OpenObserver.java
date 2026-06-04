@@ -25,12 +25,23 @@ public class OpenObserver implements GameObserver {
         Player currentPlayer = game.getPlayer();
         Room currentRoom = currentPlayer.getCurrentRoom();
 
-        if (currentObj == null) {
+        if (currentObj == null || !currentObj.isVisible()) {
             System.out.println("Aprire cosa?");
             return;
         }
 
         String name = safeName(currentObj);
+
+        if (name.equals("porta") && currentRoom == game.getIngresso()) {
+            if (game.isLockerOpen()) {
+                System.out.println("La porta è già aperta.");
+                return;
+            }
+            else{
+                System.out.println("La porta è bloccata. Forse c'è un modo per sbloccarla.");
+                return;
+            }
+        }
 
         if (name.equals("armadietto") && currentRoom == game.getStanzinoPulizie()) {
             if (game.isLockerOpen()) {
@@ -49,7 +60,30 @@ public class OpenObserver implements GameObserver {
             }
         }
 
-        System.out.println("Non sembra che '" + currentObj.getName() + "' si possa aprire ora.");
+        if (name.equals("blindata")) {
+            if (currentRoom == game.getCaveau()) {
+                if (game.isSecurityEnabled()) {
+                    System.out.println("La porta blindata è bloccata elettronicamente.\n" +
+                        "Non sembra esserci un modo senza disattivare le misure di sicurezza.");
+                    return;
+                }
+                else {
+                    System.out.println("Essendo che hai disattivato le misure di sicurezza, la porta blindata si apre senza problemi.\n"+
+                        "Da ora conviene non fare stupidaggini, trova la riserva d'oro e fuggi dall'edificio.");
+                    AdvObject.findInRoom(currentRoom, "cassetta").setVisible(true);
+                    AdvObject.findInRoom(currentRoom, "oro").setVisible(true);
+                    return;
+                }
+            }
+        }
+
+        if (name.equals("cassetta")) {
+            if (currentRoom == game.getCaveau()) {
+                
+            }
+        }
+
+        System.out.println("Temo che < " + currentObj.getName() + " > non si possa aprire qui.");
     }
 
 

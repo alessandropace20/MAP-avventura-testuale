@@ -46,6 +46,7 @@ public class MoveObserver implements GameObserver {
         else {
             pl.setCurrentRoom(next);
             System.out.println("Ti sposti in: " + next.getName() + ".");
+            //se la prossima è il caveau, implementare un dialogo per far capire che la porta blindata è aperta data la disativazione dei sistemi di sicurezza
             if (next.getDescription() != null && !next.getDescription().isBlank()) {
                 System.out.println(next.getDescription());
             }

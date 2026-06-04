@@ -29,8 +29,6 @@ public class GameDesc implements GameDescription {
     private boolean lockerState = false;
     private boolean cameraState = true;
     private boolean securityState = true;
-    private boolean sensorState = false;
-    private boolean caveauState = false;
     
     private int dangerLVL = 0;
     private int score = 0;
@@ -62,10 +60,10 @@ public class GameDesc implements GameDescription {
             "Un lungo corridoio con diverse porte che conducono a zone riservate.");
         caveau = new Room(
             6,false, "Caveau",
-            "Il caveau della banca. Devi forzare la serratura per accedere al bottino.");
+            "Il caveau della banca. Se hai disattivato tutte le misure di sicurezza, potresti essere in grado di aprirlo e prendere l'oro.");
         uscita = new Room(
             7,false, "Uscita di Emergenza",
-            "Il punto di fuga. Devi tornare qui con il bottino prima che il livello di pericolo raggiunga il massimo.");
+            "Il punto di fuga.");
         
         //Mappa
         ingresso.setNorth(stanzinoPulizie);
@@ -87,7 +85,7 @@ public class GameDesc implements GameDescription {
         AdvObject grimaldello = new AdvObject(102, "Grimaldello", "Utile per forzare porte.");
 
         AdvObject telecamera = new AdvObject(1, "Telecamera di sorveglianza.\n" +
-         "Converebbe tagliare il cavo di collegamento prima di provare ad entrare.", "");
+            "Converebbe tagliare il cavo di collegamento prima di provare ad entrare.", "");
         ingresso.addObject(telecamera);
         telecamera.setPickupable(false);
         telecamera.setVisible(true);
@@ -116,9 +114,23 @@ public class GameDesc implements GameDescription {
         t2.setPickupable(false);
         t2.setVisible(false);
 
-        AdvObject tastierino = new AdvObject(108, "Tastierino", "Un tastierino per inserire un codice.");
-        corridoio.addObject(tastierino);
+        AdvObject tastierino = new AdvObject(108, "Tastierino", "Un tastierino... non hai il codice della porta blindata e dubito lo otterrai.");
+        caveau.addObject(tastierino);
         tastierino.setPickupable(false);
+
+        AdvObject blindata = new AdvObject(109, "Blindata", "");
+        caveau.addObject(blindata);
+        blindata.setPickupable(false);
+
+        AdvObject cassetta = new AdvObject(109, "Cassetta di sicurezza", "La cassetta di sicurezza... dovremmo esserci.");
+        caveau.addObject(cassetta);
+        cassetta.setPickupable(false);
+        cassetta.setVisible(false);
+
+        AdvObject oro = new AdvObject(110, "Oro", "[OBIETTIVO]\nLa riserva d'oro del trafficante. Prendilo e scappa!");
+        caveau.addObject(oro);
+        oro.setPickupable(true);
+        oro.setVisible(false);
 
         // Comandi
         commands.clear();
@@ -163,16 +175,12 @@ public class GameDesc implements GameDescription {
     // Boolean methods
     public boolean isLockerOpen() { return lockerState; }
     public boolean isCameraEnabled() { return cameraState; }
-    public boolean isCamerasEnabled() { return securityState; }
-    public boolean isSensorsDisabled() { return sensorState; }
-    public boolean isCaveauOpen() { return caveauState; }
+    public boolean isSecurityEnabled() { return securityState; }
 
     // Setter
     public void setLocker(boolean b) { this.lockerState = b; }
     public void setCamera(boolean b) { this.cameraState = b; }
-    public void setCameras(boolean b) { this.securityState = b; }
-    public void setSensors(boolean b) { this.sensorState = b; }
-    public void setCaveauOpen(boolean b) { this.caveauState = b; }
+    public void setSecurity(boolean b) { this.securityState = b; }
 
     // Getter
     
