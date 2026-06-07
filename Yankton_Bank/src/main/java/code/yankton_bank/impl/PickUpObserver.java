@@ -6,7 +6,6 @@ package code.yankton_bank.impl;
 
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
-import code.yankton_bank.util.MusicHandler; 
 
 /**
  * Observer che gestisce i comandi di raccolta.
@@ -51,11 +50,9 @@ public class PickUpObserver implements GameObserver {
             System.out.println("Hai raccolto l'oro, torna indietro e fuggi dall'edificio!");
             System.out.println("\n======================================================\n");
         }
-        MusicHandler.playSfx("/audio/pickup.wav"); // [AUDIO]
-
 
         if (name.equals("chiavi") && cur == game.getStanzinoPulizie()) {
-                game.addScore(10); //sostituire con il timer in concorrenza: aggiungere minuti al tempo rimanente, etc.
+                game.addScore(10);
                 System.out.println("Essenziali. Accelerano di gran lunga il piano, ottimo.");
         }
     }

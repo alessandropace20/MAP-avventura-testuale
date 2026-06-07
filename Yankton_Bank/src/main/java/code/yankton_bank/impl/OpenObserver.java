@@ -32,40 +32,30 @@ public class OpenObserver implements GameObserver {
 
         String name = safeName(currentObj);
 
-        if (name.equals("porta") && currentRoom == game.getIngresso()) {
+        if (name.equals("porta")) {
             System.out.println("\n======================================================\n");
-            if (game.isLockerOpen()) {
-                System.out.println("La porta è già aperta.");
-            }
-            else {
-                System.out.println("La porta d'ingresso è, chiaramente, bloccata." + 
-                    "\nControlla nel tuo inventario se hai qualcosa per scassinarla. Assicurati di farlo in sicurezza.");
-            }
-            System.out.println("\n======================================================\n");
-            return;
-        }
-
-        if (name.equals("armadietto") && currentRoom == game.getStanzinoPulizie()) {
-            if (game.isLockerOpen()) {
-                System.out.println("Hai già aperto l'armadietto. C'erano le chiavi dell'edificio.");
-                return;
-            }
-            else {
-                game.setLocker(true);
-                AdvObject keys = findInRoom(currentRoom, "Chiavi");
-                if (keys != null) {
-                    keys.setVisible(true);
+            if(currentRoom == game.getIngresso()) {
+                if (!game.getStanzinoPulizie().isLocked()) {
+                    System.out.println("La porta è già aperta.");
                 }
-                game.addScore(5);
+                else {
+                    System.out.println("La porta d'ingresso è, chiaramente, bloccata." + 
+                        "\nControlla nel tuo inventario se hai qualcosa per scassinarla. Assicurati di farlo in sicurezza.");
+                }
                 System.out.println("\n======================================================\n");
-                System.out.println("Forzandolo, riesci ad aprire l'armadietto: dentro trovi un mazzo di chiavi.");
+                return;   
+            }
+            if (currentRoom == game.getStanzinoPulizie()) {
+                if (!game.getSalaSorveglianza().isLocked()) {
+                    System.out.println("La porta è già aperta.");
+                }
+                else {
+                    System.out.println("La porta è bloccata. Sembra essere chiusa a chiave, forse c'è qualcosa che puoi usare per aprirla.");
+                }
                 System.out.println("\n======================================================\n");
                 return;
             }
-        }
-
-        if (name.equals("porta blindata")) {
-            if (currentRoom == game.getCaveau()) {
+            if (currentRoom == game.getIngCaveau()) {
                 System.out.println("\n======================================================\n");
                 if (game.isSecurityEnabled()) {
                     System.out.println("La porta blindata è bloccata elettronicamente.\n" +
@@ -74,8 +64,41 @@ public class OpenObserver implements GameObserver {
                 else {
                     System.out.println("Essendo che hai disattivato le misure di sicurezza, la porta blindata si apre senza problemi.\n"+
                         "Da ora conviene non fare stupidaggini, trova la riserva d'oro e fuggi dall'edificio.");
-                        System.out.println("---");
-                    AdvObject.findInRoom(currentRoom, "cassetta").setVisible(true);
+                        System.out.println("C'è una cassetta semi-aperta sul tavolo... ci sei quasi!");
+                }
+            }            
+            System.out.println("\n======================================================\n");
+            return;
+        }
+
+        if (name.equals("armadietto") && currentRoom == game.getStanzinoPulizie()) {
+            if (game.isLockerOpen()) {
+                System.out.println("Hai già aperto l'armadietto. C'era quel mazzo di chiavi.");
+                return;
+            }
+            else {
+                game.setLocker(true);
+                AdvObject keys = findInRoom(currentRoom, "Chiavi");
+                keys.setVisible(true);
+                game.addScore(5);
+                System.out.println("\n======================================================\n");
+                System.out.println("Forzandolo, riesci ad aprire l'armadietto: dentro trovi un mazzo di chiavi.");
+                System.out.println("\n======================================================\n");
+                return;
+            }
+        }
+
+        if (name.equals("porta")) {
+            if (currentRoom == game.getIngCaveau()) {
+                System.out.println("\n======================================================\n");
+                if (game.isSecurityEnabled()) {
+                    System.out.println("La porta blindata è bloccata elettronicamente.\n" +
+                        "Non sembra esserci un modo senza disattivare le misure di sicurezza.");
+                }
+                else {
+                    System.out.println("Essendo che hai disattivato le misure di sicurezza, la porta blindata si apre senza problemi.\n"+
+                        "Da ora conviene non fare stupidaggini, trova la riserva d'oro e fuggi dall'edificio.");
+                        System.out.println("C'è una cassetta semi-aperta sul tavolo... ci sei quasi!");
                 }
                 System.out.println("\n======================================================\n");
                 return;
@@ -84,7 +107,10 @@ public class OpenObserver implements GameObserver {
 
         if (name.equals("cassetta")) {
             if (currentRoom == game.getCaveau()) {
-                
+                System.out.println("\n======================================================\n");
+                System.out.println("Apri la cassetta di sicurezza e trovi la riserva d'oro del trafficante. Prendilo e scappa!");
+                AdvObject.findInRoom(currentRoom, "Oro").setVisible(true);
+                System.out.println("\n======================================================\n");
                 return;
             }
         }

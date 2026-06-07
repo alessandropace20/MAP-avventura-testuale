@@ -6,6 +6,7 @@ package code.yankton_bank.impl;
 
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Observer che gestisce la visualizzazione dell’inventario.
@@ -20,6 +21,6 @@ public class InventoryObserver implements GameObserver {
         if (!(g instanceof GameDesc game)) return;
         if (p.getCommand() == null || p.getCommand().getType() != CommandType.INVENTORY) return;
 
-        System.out.println(game.getPlayer().getInventory().toString());
+        System.out.println(PrettyPrint.print(game.getPlayer().getInventory().toString()));
     }
 }

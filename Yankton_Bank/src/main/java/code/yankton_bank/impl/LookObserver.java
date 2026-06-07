@@ -6,6 +6,7 @@ package code.yankton_bank.impl;
 
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Observer che gestisce i comandi di osservazione.
@@ -26,7 +27,7 @@ public class LookObserver implements GameObserver {
         System.out.println(cur.getDescription());
 
         if (!cur.getObjects().isEmpty()) {
-            System.out.println("Vedi:");
+            System.out.println("\nVedi:\n");
             for (AdvObject o : cur.getObjects()) {
                 if (o.isVisible()) {
                     System.out.println("- " + o.getName());

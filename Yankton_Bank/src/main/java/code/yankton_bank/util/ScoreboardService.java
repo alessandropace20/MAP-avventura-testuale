@@ -10,9 +10,11 @@ import java.nio.file.*;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  *Utilizzata per salvare i punteggi (usata dagli observer/UI).
  */
+
 public final class ScoreboardService {
     private static final Path FILE = Paths.get("scores.txt");
 

@@ -165,8 +165,7 @@ public class GameController {
                 case 2 -> g.getStanzinoPulizie();
                 case 3 -> g.getSalaSorveglianza();
                 case 4 -> g.getCorridoio();
-                case 6 -> g.getCaveau();
-                case 7 -> g.getUscita();
+                case 6 -> g.getIngCaveau();
                 default -> g.getIngresso();
             };
             g.getPlayer().setCurrentRoom(r);
@@ -191,10 +190,6 @@ public class GameController {
                 g.addScore(s - curScore); // porta lo score a s
             }
         } catch (NumberFormatException ignored) {}
-
-        /*if (g.getPlayer().getInventory().containsByName("libro")) {
-            g.sbloccaSeminterrato();
-        }*/
 
         Room cur = g.getPlayer().getCurrentRoom();
         if (cur != null) {

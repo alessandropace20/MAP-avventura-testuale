@@ -6,6 +6,7 @@ package code.yankton_bank.impl;
 
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Observer che mostra l’elenco dei comandi disponibili.
@@ -18,15 +19,27 @@ public class HelpObserver implements GameObserver {
     public void update(ParserOutput p, Object g) {
         if (p.getCommand() == null || p.getCommand().getType() != CommandType.HELP) return;
 
-        System.out.println("Comandi disponibili:");
-        System.out.println("- vai <nord/sud/est/ovest/su/giù>");
+        System.out.println(PrettyPrint.print("""
+            Comandi disponibili:
+            - vai <nord/sud/est/ovest>
+            - guarda
+            - prendi <oggetto>
+            - usa <oggetto>
+            - apri <oggetto>
+            - inventario
+            - aiuto
+            - fine
+            """));
+
+        /*System.out.println("Comandi disponibili:");
+        System.out.println("- vai <nord/sud/est/ovest>");
         System.out.println("- guarda");
         System.out.println("- prendi <oggetto>");
         System.out.println("- usa <oggetto>");
         System.out.println("- apri <oggetto>");
         System.out.println("- inventario");
         System.out.println("- aiuto");
-        System.out.println("- fine");
+        System.out.println("- fine");*/
     }
 }
 

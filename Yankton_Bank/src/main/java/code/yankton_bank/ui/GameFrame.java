@@ -35,7 +35,7 @@ public class GameFrame extends JFrame {
         this.controller = controller;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 700);
+        setSize(800, 700);
         setLocationRelativeTo(null);
 
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,7 +100,7 @@ public class GameFrame extends JFrame {
     }
 
     public void setStatus(String text) {
-        setTitle("Lunderoff Bank — " + text);
+        setTitle("Yankton Bank — " + text);
     }
 
     public void setRoomImageById(int roomId) {
@@ -131,6 +131,9 @@ public class GameFrame extends JFrame {
             case 2 -> "stanzino.png";               // stanzino
             case 3 -> "salaSorveglianza.png";       // sorveglianza
             case 4 -> "corridoio.png";               // corridoio
+            case 5 -> "ingCaveau.png";                   // ingresso del caveau
+            case 6 -> "caveau.png";                   // caveau con tesoro
+            case 8 -> "uscita.png";                   // uscita
             default -> null;
         };
     }

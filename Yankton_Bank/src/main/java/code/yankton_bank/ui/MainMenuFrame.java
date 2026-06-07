@@ -6,7 +6,6 @@ package code.yankton_bank.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import code.yankton_bank.util.MusicHandler; 
 
 /**
  * Finestra del menu principale.
@@ -60,15 +59,11 @@ public class MainMenuFrame extends JFrame {
         c.gridy = 6; root.add(btnExit,  c);
 
         btnNew.addActionListener(e -> {
-            MusicHandler.stopLoop();
-
             new GameController(true); // mostra intro
             dispose();
         });
 
         btnLoad.addActionListener(e -> {
-            MusicHandler.stopLoop();
-
             GameController gc = new GameController(false);
             boolean ok = gc.loadLastFromFile();
             if (!ok) {
@@ -99,7 +94,6 @@ public class MainMenuFrame extends JFrame {
         });
 
         btnExit.addActionListener(e -> {
-            MusicHandler.stopLoop();
             System.exit(0);
         });
 

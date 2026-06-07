@@ -7,7 +7,7 @@ package code.yankton_bank;
 import code.yankton_bank.ui.MainMenuFrame;
 
 /**
- * Main del progetto.
+ * Classe principale del progetto.
  */
 
 public class App {

@@ -24,7 +24,7 @@ public class GameDesc implements GameDescription {
     private Player player;
     private final List<Command> commands = new ArrayList<>();
     
-    private Room ingresso, stanzinoPulizie, salaSorveglianza, corridoio, caveau, uscita;
+    private Room ingresso, stanzinoPulizie, salaSorveglianza, corridoio, ingressoCaveau, caveau, uscita;
 
     private boolean lockerState = false;
     private boolean cameraState = true;
@@ -58,11 +58,14 @@ public class GameDesc implements GameDescription {
         corridoio = new Room(
             4,false, "Corridoio",
             "Un lungo corridoio con diverse porte che conducono a zone riservate.");
+        ingressoCaveau = new Room(
+            5,false, "Ingresso del Caveau",
+            "Il caveau della banca. Se hai disattivato tutte le misure di sicurezza, potresti essere in grado di aprirlo.");
         caveau = new Room(
-            6,false, "Caveau",
-            "Il caveau della banca. Se hai disattivato tutte le misure di sicurezza, potresti essere in grado di aprirlo e prendere l'oro.");
+            6,true, "Caveau",
+            "Il caveau della banca. Ci siamo quasi.");
         uscita = new Room(
-            7,false, "Uscita di Emergenza",
+            8,false, "Punto di fuga",
             "Il punto di fuga.");
         
         //Mappa
@@ -75,9 +78,12 @@ public class GameDesc implements GameDescription {
         salaSorveglianza.setEast(corridoio);
         
         corridoio.setWest(salaSorveglianza);
-        corridoio.setNorth(caveau);
+        corridoio.setNorth(ingressoCaveau);
         
-        caveau.setSouth(corridoio);
+        ingressoCaveau.setSouth(corridoio);
+        ingressoCaveau.setNorth(caveau);
+
+        caveau.setSouth(ingressoCaveau);
 
         // Oggetti
         AdvObject pinze = new AdvObject(101, "Pinze", "Pinze utili per tagliare fili.");
@@ -86,9 +92,11 @@ public class GameDesc implements GameDescription {
         
         AdvObject porta = new AdvObject(0, "Porta", "");
         ingresso.addObject(porta);
+        stanzinoPulizie.addObject(porta);
+        ingressoCaveau.addObject(porta);
         porta.setPickupable(false);
         porta.setVisible(true);
-
+        
         AdvObject telecamera = new AdvObject(1, "Telecamera di sorveglianza.",
             "\nConverebbe tagliare il cavo di collegamento prima di provare ad entrare.");
         ingresso.addObject(telecamera);
@@ -120,17 +128,13 @@ public class GameDesc implements GameDescription {
         t2.setVisible(false);
 
         AdvObject tastierino = new AdvObject(108, "Tastierino", "Un tastierino... non hai il codice della porta blindata e dubito lo otterrai.");
-        caveau.addObject(tastierino);
+        ingressoCaveau.addObject(tastierino);
         tastierino.setPickupable(false);
-
-        AdvObject blindata = new AdvObject(109, "Porta Blindata", "");
-        caveau.addObject(blindata);
-        blindata.setPickupable(false);
 
         AdvObject cassetta = new AdvObject(109, "Cassetta", "La cassetta di sicurezza... dovremmo esserci.");
         caveau.addObject(cassetta);
         cassetta.setPickupable(false);
-        cassetta.setVisible(false);
+        cassetta.setVisible(true);
 
         AdvObject oro = new AdvObject(110, "Oro", "[OBIETTIVO]\nLa riserva d'oro del trafficante. Prendilo e scappa!");
         caveau.addObject(oro);
@@ -160,8 +164,8 @@ public class GameDesc implements GameDescription {
     public Room getStanzinoPulizie() { return stanzinoPulizie; }
     public Room getSalaSorveglianza() { return salaSorveglianza; }
     public Room getCorridoio() { return corridoio; }
+    public Room getIngCaveau() { return ingressoCaveau; }
     public Room getCaveau() { return caveau; }
-    public Room getUscita() { return uscita; }
     
     // Metodo per incrementare il livello di pericolo
     public void incrementDanger(int level) {
@@ -174,7 +178,6 @@ public class GameDesc implements GameDescription {
     // Metodo per punteggio
     public void addScore(int points) { score += points; }
     public void decreaseScore(int points) { score -= points; }
-    public int getDangerLVL() { return dangerLVL; }
     public int getScore() { return score; }
     
     // Boolean methods
@@ -199,4 +202,3 @@ public class GameDesc implements GameDescription {
     @Override public List<Command> getCommands() { return commands; }
     @Override public Player getPlayer() { return player; }
 }
-

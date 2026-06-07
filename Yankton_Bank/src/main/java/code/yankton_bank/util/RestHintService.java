@@ -9,10 +9,10 @@ package code.yankton_bank.util;
  * Usa un endpoint pubblico di test (jsonplaceholder) e restituisce il campo "title".
  * In caso di problemi, ritorna null e il gioco continua normale.
  */
+
 public final class RestHintService {
 
     private RestHintService() {}
-
     
     public static String fetchOnlineHint() {
         
