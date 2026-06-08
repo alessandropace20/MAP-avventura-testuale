@@ -4,9 +4,12 @@
  */
 package code.yankton_bank.impl;
 
+import java.util.function.Supplier;
+
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
 import code.yankton_bank.util.Concurrent;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Gestisce i movimenti del giocatore (nord/sud/est/ovest)
@@ -36,35 +39,29 @@ public class MoveObserver implements GameObserver {
         Room current = pl.getCurrentRoom();
         Room next = current.getExit(dir);
 
-        if (next == null) {
-            System.out.println("Non puoi andare in quella direzione.");
-            return;
-        }
-        if (next.isLocked()){
-            System.out.println("La stanza è bloccata. E' necessario sbloccare l'ingresso.");
-            return;
-        }
-        else {
-            pl.setCurrentRoom(next);
-            System.out.println("Ti sposti in: " + next.getName() + ".");
-            if (next.getDescription() != null && !next.getDescription().isBlank()) {
-                System.out.println(next.getDescription());
+        String result = ((Supplier<String>) () -> {
+            StringBuilder sb = new StringBuilder();
+
+            if (next == null) {
+                sb.append("Non puoi andare in quella direzione.");
+                return sb.toString();
             }
-            if (next.getName() == "Corridoio" && game.isSecurityEnabled()) {
-                System.out.println("\n======================================================\n");
-                    System.out.println("Diamine! Hai fatto scattare l'allarme!\n\n" + 
-                        "GAME OVER");
-                    System.out.println("\n======================================================\n");                  
-                    Concurrent.runAsync(() -> {
-                        try {
-                            Thread.sleep(2000);
-                            EndObserver.finish(game, false);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });
+            if (next.isLocked()) {
+                sb.append("La stanza è bloccata. E' necessario sbloccare l'ingresso.");
+                return sb.toString();
+            } else {
+                pl.setCurrentRoom(next);
+                sb.append("Ti sposti in: ").append(next.getName()).append(".");
+
+                if (next.getDescription() != null && !next.getDescription().isBlank()) {
+                    sb.append("\n").append(next.getDescription());
+                }
             }
-        }
+
+            return sb.toString();
+        }).get();
+
+        System.out.println(PrettyPrint.print(result));
 
         try {
             boolean exitPoint = (next.getId() == 1);

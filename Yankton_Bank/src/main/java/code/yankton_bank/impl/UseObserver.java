@@ -4,9 +4,12 @@
  */
 package code.yankton_bank.impl;
 
+import java.util.function.Supplier;
+
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
 import code.yankton_bank.util.Concurrent;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Observer che gestisce i comandi di utilizzo.
@@ -17,8 +20,10 @@ public class UseObserver implements GameObserver {
 
     @Override
     public void update(ParserOutput parser, Object g) {
-        if (!(g instanceof GameDesc game)) return;
-        if (parser.getCommand() == null || parser.getCommand().getType() != CommandType.USE) return;
+        if (!(g instanceof GameDesc game))
+            return;
+        if (parser.getCommand() == null || parser.getCommand().getType() != CommandType.USE)
+            return;
 
         AdvObject currentObj = parser.getObject();
         Player currentPlayer = game.getPlayer();
@@ -31,176 +36,136 @@ public class UseObserver implements GameObserver {
 
         String name = safeName(currentObj);
 
-        // 1.0 - Usare le pinze
-        if (name.equals("pinze")) {
-            if (currentPlayer.getInventory().containsByName("Pinze")) {
-                if (currentRoom == game.getIngresso()) {
-
-                    System.out.println("\n======================================================\n");
-                    System.out.println("Usi le pinze per tagliare i cavi elettrici esterni.\nTelecamera disabilitata.");
-                    System.out.println("\n======================================================\n");
-                    game.addScore(15);
-                    game.setCamera(false);
-                    return;
-                }
-            }
-            else {
-
-                System.out.println("Non hai delle pinze.");
-                return;
-            }
-        }
-
-        // 1.1 - Usare il grimaldello
-        if (name.equals("grimaldello")){
-            if (currentPlayer.getInventory().containsByName("Grimaldello")) {
-                if (currentRoom == game.getIngresso()) {
-                    System.out.println("\n======================================================\n");
-                    System.out.println("Usi il grimaldello per forzare la porta.\nPorta nord sbloccata.");
-                    System.out.println("\n======================================================\n");
-                    game.getStanzinoPulizie().setLocked(false);
-
-                    if(game.isCameraEnabled()){
-                        game.decreaseScore(10);
-                    }
-                    else {
-                        game.addScore(15);
-                    }
-                    return;
-                }
-                if (currentRoom == game.getIngCaveau()) {
-                    System.out.println("\n======================================================\n");
-                    System.out.println("Sul serio vuoi aprire una porta blindata da 2 quintali con un grimaldello?\n" +
-                    "Devi trovare un altro modo per aprirla.\nTi converrebbe disattivare i sistemi di sicurezza, anche se non mi sembri un tipo sveglio.");
-                    System.out.println("\n======================================================\n");
-                    return;
-                }
-            }
-            else {
-                System.out.println("Non hai alcun grimaldello.");
-                return;
-            }
-        }
-
-        // 2.0 - Usare le chiavi
-        if (name.equals("chiavi")) {
-            if (currentPlayer.getInventory().containsByName("Chiavi")) {
-                if(currentRoom == game.getStanzinoPulizie()) {
-                    System.out.println("\n======================================================\n");
-                    if(game.getSalaSorveglianza().isLocked()){
-                        System.out.println("Porta nord sbloccata.");
-                        game.getSalaSorveglianza().setLocked(false);
-                        game.addScore(15);
-                    }
-                    else {
-                        System.out.println("Porta già sbloccata.");
-                    }
-                    System.out.println("\n======================================================\n");
-                    return;
-                }
-                if(currentRoom == game.getIngCaveau()) {
-                    System.out.println("\n======================================================\n");
-                    System.out.println("Non credo che in un mazzo di chiavi trovato in uno stanzino delle pulizie, ci sia una chiave che possa aprire" +
-                        " una porta blindata spessa più del tuo cervello, genio...");
-                    System.out.println("\n======================================================\n");
-                    return;
-                }
-            }
-            else {
-                System.out.println("Non hai delle chiavi.");
-                return;
-            }
-        }
-
-        // 2.1 - Usare il terminale principale ()
-        if (name.equals("terminale")) {
-            if (currentRoom == game.getSalaSorveglianza()) {
-                System.out.println("\n======================================================\n");
-                if (game.isSecurityEnabled()) {
-                    System.out.println("Sullo schermo c'è scritto:\n'Accedere al terminale di sblocco':\n-T1\n-T2\n");
-                    System.out.println("Deve essere uno di quei vecchi sistemi.. scegli quello sbagliato e scatterà l'allarme.");                
-                    AdvObject.findInRoom(currentRoom, "T1").setVisible(true);
-                    AdvObject.findInRoom(currentRoom, "T2").setVisible(true);
-                } 
-                else {
-                    System.out.println("Inutile, le telecamere sono già disattivate.");
-                }
-                System.out.println("\n======================================================\n");
-                return;
-            }
-            else {
-                System.out.println("Non c'è nessun terminale qui.");
-                return;
-            }
-            
-        }
-
-        // 2.2 - Usare il terminale di sblocco 1 () ALLARME !!!!!
-        if (name.equals("t1")) {
-            if (currentRoom == game.getSalaSorveglianza()) {
-                if(AdvObject.findInRoom(game.getSalaSorveglianza(), "T1").isVisible()){
-                    System.out.println("\n======================================================\n");
-                    System.out.println("Diamine! Hai fatto scattare l'allarme!\n\n" + 
-                        "GAME OVER");
-                    System.out.println("\n======================================================\n");                  
-                    Concurrent.runAsync(() -> {
-                        try {
-                            Thread.sleep(2000);
-                            EndObserver.finish(game, false);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+        String result = ((Supplier<String>) () -> {
+            StringBuilder sb = new StringBuilder();
+        
+            switch (name) {
+        
+                // 1.0 - Usare le pinze
+                case "pinze" -> {
+                    if (currentPlayer.getInventory().containsByName("Pinze")) {
+                        if (currentRoom == game.getIngresso()) {
+                            sb.append("Usi le pinze per tagliare i cavi elettrici esterni.\nTelecamera disabilitata.");
+                            game.addScore(15);
+                            game.setCamera(false);
                         }
-                    });                    
-                    return;
-                }
-            }
-            else {
-                System.out.println("Non c'è nessun terminale qui.");
-                return;
-            }
-            
-        }
-
-        // 2.3 - Usare il terminale di sblocco 2 () CORRETTO, Disabilita le telecamere
-        if (name.equals("t2")) {
-            if (currentRoom == game.getSalaSorveglianza()) {
-                if(AdvObject.findInRoom(currentRoom, "T2").isVisible()) {
-                    System.out.println("\n======================================================\n");
-                    if (game.isSecurityEnabled()) {
-                        game.setSecurity(false);
-                        game.getCaveau().setLocked(false);
-                        game.addScore(10);
-                        System.out.println("Terminale corretto per disattivare le telecamere. Ora puoi muoverti senza essere visto.");
+                    } else {
+                        sb.append("Non hai delle pinze.");
                     }
-                    else {
-                        System.out.println("Le telecamere sono già disattivate.");
-                    }
-                    System.out.println("\n======================================================\n");
-                    return;
                 }
+        
+                // 1.1 - Usare il grimaldello
+                case "grimaldello" -> {
+                    if (currentPlayer.getInventory().containsByName("Grimaldello")) {
+                        if (currentRoom == game.getIngresso()) {
+                            sb.append("Usi il grimaldello per forzare la porta.\nPorta nord sbloccata.");
+                            game.getStanzinoPulizie().setLocked(false);
+                            if (game.isCameraEnabled()) {
+                                game.decreaseScore(10);
+                            } else {
+                                game.addScore(15);
+                            }
+                        }
+                        if (currentRoom == game.getIngCaveau()) {
+                            sb.append("Sul serio vuoi aprire una porta blindata da 2 quintali con un grimaldello?\n")
+                              .append("Devi trovare un altro modo per aprirla.\n")
+                              .append("Ti converrebbe disattivare i sistemi di sicurezza, anche se non mi sembri un tipo sveglio.");
+                        }
+                    } else {
+                        sb.append("Non hai alcun grimaldello.");
+                    }
+                }
+        
+                // 2.0 - Usare le chiavi
+                case "chiavi" -> {
+                    if (currentPlayer.getInventory().containsByName("Chiavi")) {
+                        if (currentRoom == game.getStanzinoPulizie()) {
+                            if (game.getSalaSorveglianza().isLocked()) {
+                                sb.append("Porta nord sbloccata.");
+                                game.getSalaSorveglianza().setLocked(false);
+                                game.addScore(15);
+                            } else {
+                                sb.append("Porta già sbloccata.");
+                            }
+                        }
+                        if (currentRoom == game.getIngCaveau()) {
+                            sb.append("Non credo che in un mazzo di chiavi trovato in uno stanzino delle pulizie, ci sia una chiave che possa aprire")
+                              .append(" una porta blindata spessa più del tuo cervello, genio...");
+                        }
+                    } else {
+                        sb.append("Non hai delle chiavi.");
+                    }
+                }
+        
+                // 2.1 - Usare il terminale principale
+                case "terminale" -> {
+                    if (currentRoom == game.getSalaSorveglianza()) {
+                        if (game.isSecurityEnabled()) {
+                            sb.append("Sullo schermo c'è scritto:\n'Accedere al terminale di sblocco':\n-T1\n-T2\n")
+                              .append("\nDeve essere uno di quei vecchi sistemi.. scegli quello sbagliato e scatterà l'allarme.");
+                            AdvObject.findInRoom(currentRoom, "T1").setVisible(true);
+                            AdvObject.findInRoom(currentRoom, "T2").setVisible(true);
+                        } else {
+                            sb.append("Inutile, le telecamere sono già disattivate.");
+                        }
+                    } else {
+                        sb.append("Non c'è nessun terminale qui.");
+                    }
+                }
+        
+                // 2.2 - Usare il terminale di sblocco 1 - ALLARME
+                case "t1" -> {
+                    if (currentRoom == game.getSalaSorveglianza()) {
+                        if (AdvObject.findInRoom(game.getSalaSorveglianza(), "T1").isVisible()) {
+                            sb.append("Diamine! Hai fatto scattare l'allarme!\n\nGAME OVER");
+                            Concurrent.runAsync(() -> {
+                                try {
+                                    Thread.sleep(2000);
+                                    EndObserver.finish(game, false);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        }
+                    } else {
+                        sb.append("Non c'è nessun terminale qui.");
+                    }
+                }
+        
+                // 2.3 - Usare il terminale di sblocco 2 - Disabilita le telecamere
+                case "t2" -> {
+                    if (currentRoom == game.getSalaSorveglianza()) {
+                        if (AdvObject.findInRoom(currentRoom, "T2").isVisible()) {
+                            if (game.isSecurityEnabled()) {
+                                game.setSecurity(false);
+                                game.getCaveau().setLocked(false);
+                                game.addScore(10);
+                                sb.append("Terminale corretto per disattivare le telecamere. Ora puoi muoverti senza essere visto.");
+                            } else {
+                                sb.append("Le telecamere sono già disattivate.");
+                            }
+                        }
+                    } else {
+                        sb.append("Non c'è nessun terminale qui.");
+                    }
+                }
+        
+                // 3.0 - Usare il tastierino del caveau
+                case "tastierino" -> {
+                    if (currentRoom == game.getIngCaveau()) {
+                        sb.append("Hai già disabilitato le misure di sicurezza, la porta del caveau è sbloccata.");
+                    } else {
+                        sb.append("Non c'è nessun tastierino qui.");
+                    }
+                }
+        
+                default -> sb.append("Temo che < ").append(name).append(" > non si possa usare qui.");
             }
-            else {
-                System.out.println("Non c'è nessun terminale qui.");
-                return;
-            }
-            
-        }
-
-        // 3.0 - Usare il tastierino del caveau
-        if (name.equals("tastierino")) {
-            if (currentRoom == game.getIngCaveau()) {
-                System.out.println("\n======================================================\n");
-                System.out.println("Hai già disabilitato le misure di sicurezza, la porta del caveau è sbloccata.");
-                System.out.println("\n======================================================\n");
-                return;
-            }
-            else {
-                System.out.println("Non c'è nessun tastierino qui.");
-                return;
-            }
-        }
-
-        System.out.println("Temo che < " + name + " > non si possa usare qui.");
+        
+            return sb.toString();
+        }).get();
+        
+        System.out.println(PrettyPrint.print(result));
     }
 
     private String safeName(AdvObject obj) {

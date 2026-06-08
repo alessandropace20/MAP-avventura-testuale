@@ -4,6 +4,8 @@
  */
 package code.yankton_bank.impl;
 
+import java.util.function.Supplier;
+
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
 import code.yankton_bank.util.PrettyPrint;
@@ -20,20 +22,24 @@ public class LookObserver implements GameObserver {
     public void update(ParserOutput p, Object g) {
         if (!(g instanceof GameDesc game)) return;
         if (p.getCommand() == null || p.getCommand().getType() != CommandType.LOOK) return;
-        System.out.println("\n======================================================\n");
-        Room cur = game.getPlayer().getCurrentRoom();
-        
-        System.out.println("Ti trovi in: " + cur.getName() + "\n");
-        System.out.println(cur.getDescription());
-
-        if (!cur.getObjects().isEmpty()) {
-            System.out.println("\nVedi:\n");
-            for (AdvObject o : cur.getObjects()) {
-                if (o.isVisible()) {
-                    System.out.println("- " + o.getName());
+        String result = ((Supplier<String>) () -> {
+            StringBuilder sb = new StringBuilder();
+    
+            Room cur = game.getPlayer().getCurrentRoom();
+            sb.append("Ti trovi in: ").append(cur.getName()).append("\n\n");
+            sb.append(cur.getDescription()).append("\n");
+    
+            if (!cur.getObjects().isEmpty()) {
+                sb.append("\nVedi:\n");
+                for (AdvObject o : cur.getObjects()) {
+                    if (o.isVisible()) {
+                    sb.append("- ").append(o.getName()).append("\n");
+                    }
                 }
             }
-        }
-        System.out.println("\n======================================================\n");
+            return sb.toString();
+        }).get();
+
+        System.out.println(PrettyPrint.print(result));
     }
 }

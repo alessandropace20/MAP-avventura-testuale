@@ -4,8 +4,12 @@
  */
 package code.yankton_bank.impl;
 
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 import code.yankton_bank.parser.ParserOutput;
 import code.yankton_bank.type.*;
+import code.yankton_bank.util.PrettyPrint;
 
 /**
  * Observer che gestisce i comandi di raccolta.
@@ -18,8 +22,10 @@ public class PickUpObserver implements GameObserver {
 
     @Override
     public void update(ParserOutput p, Object g) {
-        if (!(g instanceof GameDesc game)) return;
-        if (p.getCommand() == null || p.getCommand().getType() != CommandType.PICK_UP) return;
+        if (!(g instanceof GameDesc game))
+            return;
+        if (p.getCommand() == null || p.getCommand().getType() != CommandType.PICK_UP)
+            return;
 
         AdvObject obj = p.getObject();
         Player pl = game.getPlayer();
@@ -33,28 +39,34 @@ public class PickUpObserver implements GameObserver {
         String name = safeName(obj);
 
         AdvObject inRoom = findInRoom(cur, name);
-        if (inRoom == null || !inRoom.isVisible()) {
-            System.out.println("Qui non vedo '" + obj.getName() + "'.");
-            return;
-        }
-        if (!inRoom.isPickupable()) {
-            System.out.println("Non puoi prendere '" + obj.getName() + "'.");
-            return;
-        }
+        String result = ((Supplier<String>) () -> {
+            StringBuilder sb = new StringBuilder();
 
-        removeFromRoom(cur, name);
-        pl.getInventory().add(inRoom);
-        System.out.println("Raccolto: " + inRoom.getName());
-        if(name == "oro") {
-            System.out.println("\n======================================================\n");
-            System.out.println("Hai raccolto l'oro, torna indietro e fuggi dall'edificio!");
-            System.out.println("\n======================================================\n");
-        }
+            if (inRoom == null || !inRoom.isVisible()) {
+                sb.append("Qui non vedo '").append(obj.getName()).append("'.");
+                return sb.toString();
+            }
+            if (!inRoom.isPickupable()) {
+                sb.append("Non puoi prendere '").append(obj.getName()).append("'.");
+                return sb.toString();
+            }
 
-        if (name.equals("chiavi") && cur == game.getStanzinoPulizie()) {
+            removeFromRoom(cur, name);
+            pl.getInventory().add(inRoom);
+            sb.append("Raccolto: ").append(inRoom.getName());
+
+            if (name.equals("oro")) {
+                sb.append("\nHai raccolto l'oro, torna indietro e fuggi dall'edificio!");
+            }
+
+            if (name.equals("chiavi") && cur == game.getStanzinoPulizie()) {
                 game.addScore(10);
-                System.out.println("Essenziali. Accelerano di gran lunga il piano, ottimo.");
-        }
+                sb.append("\nEssenziali. Accelerano di gran lunga il piano, ottimo.");
+            }
+
+            return sb.toString();
+        }).get();
+        System.out.println(PrettyPrint.print(result));
     }
 
 
