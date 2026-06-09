@@ -1,0 +1,51 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+--no-fonts
+-encoding
+'UTF-8'
+-protected
+--release
+23
+-sourcepath
+'/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Yankton_Bank 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'Yankton_Bank 1.0-SNAPSHOT API'
+code.yankton_bank.impl
+code.yankton_bank.ui
+code.yankton_bank.database
+code.yankton_bank.util
+code.yankton_bank
+code.yankton_bank.parser
+code.yankton_bank.type
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/src/main/java/.DS_Store = 1780914280587
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/src/main/java = 1780750271564
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/tag-search-index.js = 1780915089652
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/overview-tree.html = 1780915089630
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/module-search-index.js = 1780915089651
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/index.html = 1780915089632
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/package-search-index.js = 1780915089652
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/serialized-form.html = 1780915089578
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/index-all.html = 1780915089664
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/allpackages-index.html = 1780915089651
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/member-search-index.js = 1780915089652
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/overview-summary.html = 1780915089666
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/help-doc.html = 1780915089668
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/element-list = 1780915089547
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/search.html = 1780915089665
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/allclasses-index.html = 1780915089650
+/Users/alessandropace/Documents/GitHub/MAP-avventura-testuale/Yankton_Bank/target/reports/apidocs/type-search-index.js = 1780915089652

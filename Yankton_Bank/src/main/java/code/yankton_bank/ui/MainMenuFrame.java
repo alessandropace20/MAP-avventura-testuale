@@ -6,6 +6,7 @@ package code.yankton_bank.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import code.yankton_bank.util.MusicHandler;
 
 /**
  * Finestra del menu principale.
@@ -43,7 +44,7 @@ public class MainMenuFrame extends JFrame {
 
         JButton btnNew   = makeButton("Nuova Partita");
         btnNew.setForeground(new Color(80, 200, 120));
-        JButton btnLoad  = makeButton("Carica Salvataggio Esistente");
+        JButton btnLoad  = makeButton("Carica Salvataggio");
         btnLoad.setForeground(new Color(50, 50, 50));
         JButton btnHelp  = makeButton("Comandi");
         btnHelp.setForeground(new Color(50, 50, 50));
@@ -97,14 +98,7 @@ public class MainMenuFrame extends JFrame {
             System.exit(0);
         });
 
-    /*MusicHandler.playLoop("/audio/menu.wav");
-    MusicHandler.preload(
-    "/audio/door_open.wav",
-    "/audio/footsteps.wav",
-    "/audio/pickup.wav",
-    "/audio/switch.wav"
-    );*/
-
+        MusicHandler.playLoop("/audio/output.wav");
     }
 
     private JButton makeButton(String text) {

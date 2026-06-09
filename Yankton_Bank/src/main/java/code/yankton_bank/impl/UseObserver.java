@@ -153,7 +153,13 @@ public class UseObserver implements GameObserver {
                 // 3.0 - Usare il tastierino del caveau
                 case "tastierino" -> {
                     if (currentRoom == game.getIngCaveau()) {
-                        sb.append("Hai già disabilitato le misure di sicurezza, la porta del caveau è sbloccata.");
+                        if(game.isSecurityEnabled()) {
+                            sb.append("E' difficile che tu possa scoprire o trovare il codice da quache parte."
+                                + "\nTi consiglio di disabilitare le misure di sicurezza, se vuoi entrare nel caveau.");
+                        }                      
+                        else {
+                            sb.append("Hai già disabilitato le misure di sicurezza, la porta del caveau è sbloccata.");
+                        } 
                     } else {
                         sb.append("Non c'è nessun tastierino qui.");
                     }

@@ -30,16 +30,6 @@ public class HelpObserver implements GameObserver {
             - aiuto
             - fine
             """));
-
-        /*System.out.println("Comandi disponibili:");
-        System.out.println("- vai <nord/sud/est/ovest>");
-        System.out.println("- guarda");
-        System.out.println("- prendi <oggetto>");
-        System.out.println("- usa <oggetto>");
-        System.out.println("- apri <oggetto>");
-        System.out.println("- inventario");
-        System.out.println("- aiuto");
-        System.out.println("- fine");*/
     }
 }
 

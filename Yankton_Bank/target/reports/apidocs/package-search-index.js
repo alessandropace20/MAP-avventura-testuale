@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"code.yankton_bank"},{"l":"code.yankton_bank.database"},{"l":"code.yankton_bank.impl"},{"l":"code.yankton_bank.parser"},{"l":"code.yankton_bank.type"},{"l":"code.yankton_bank.ui"},{"l":"code.yankton_bank.util"}];updateSearchResults();

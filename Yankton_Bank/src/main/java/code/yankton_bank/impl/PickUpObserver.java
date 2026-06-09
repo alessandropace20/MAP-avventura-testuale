@@ -4,7 +4,6 @@
  */
 package code.yankton_bank.impl;
 
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import code.yankton_bank.parser.ParserOutput;

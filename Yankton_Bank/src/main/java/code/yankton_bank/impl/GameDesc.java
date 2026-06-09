@@ -24,13 +24,12 @@ public class GameDesc implements GameDescription {
     private Player player;
     private final List<Command> commands = new ArrayList<>();
     
-    private Room ingresso, stanzinoPulizie, salaSorveglianza, corridoio, ingressoCaveau, caveau, uscita;
+    private Room ingresso, stanzinoPulizie, salaSorveglianza, corridoio, ingressoCaveau, caveau;
 
     private boolean lockerState = false;
     private boolean cameraState = true;
     private boolean securityState = true;
     
-    private int dangerLVL = 0;
     private int score = 0;
     private final Set<Integer> visited = new HashSet<>();
     
@@ -43,7 +42,7 @@ public class GameDesc implements GameDescription {
     
     @Override
     public void init() {
-        player = new Player("Michael De Santa");
+        player = new Player("Michael Kornson");
         
         // Inizializzazione delle stanze
         ingresso = new Room(
@@ -64,9 +63,6 @@ public class GameDesc implements GameDescription {
         caveau = new Room(
             6,true, "Caveau",
             "Il caveau della banca. Ci siamo quasi.");
-        uscita = new Room(
-            8,false, "Punto di fuga",
-            "Il punto di fuga.");
         
         //Mappa
         ingresso.setNorth(stanzinoPulizie);
@@ -167,14 +163,6 @@ public class GameDesc implements GameDescription {
     public Room getIngCaveau() { return ingressoCaveau; }
     public Room getCaveau() { return caveau; }
     
-    // Metodo per incrementare il livello di pericolo
-    public void incrementDanger(int level) {
-        dangerLVL += level;
-        if (dangerLVL >= 10) {
-            getEnding();
-        }
-    }
-    
     // Metodo per punteggio
     public void addScore(int points) { score += points; }
     public void decreaseScore(int points) { score -= points; }
@@ -198,7 +186,7 @@ public class GameDesc implements GameDescription {
             "Speriamo lo sia per davvero, siccome ora lo dovrai rubare.\n" +
             "Sarà pure trascurata, ma l'impianto e il sistema di sicurezza sembra essere tutt'ora attivo.\n" + 
             "Cerca di essere il più discreto possibile.\n\n"; }
-    @Override public String getEnding() { return "La polizia ti ha catturato! Hai perso."; }
+    @Override public String getEnding() { return "Hai perso."; }
     @Override public List<Command> getCommands() { return commands; }
     @Override public Player getPlayer() { return player; }
 }
