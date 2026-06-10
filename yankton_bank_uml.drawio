@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- AdvObject -->
+    <mxCell id="10" value="&lt;b&gt;AdvObject&lt;/b&gt;" style="text;html=1;strokeColor=#4A90D9;fillColor=#E8F4FB;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="320" y="40" width="220" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="11" value="- id: int&lt;br&gt;- name: String&lt;br&gt;- description: String&lt;br&gt;- visible: boolean&lt;br&gt;- pickupable: boolean" style="text;html=1;strokeColor=#4A90D9;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="320" y="74" width="220" height="86" as="geometry" />
+    </mxCell>
+    <mxCell id="12" value="+ getId(): int&lt;br&gt;+ getName(): String&lt;br&gt;+ setName(String)&lt;br&gt;+ getDescription(): String&lt;br&gt;+ setDescription(String)&lt;br&gt;+ isVisible(): boolean&lt;br&gt;+ setVisible(boolean)&lt;br&gt;+ isPickupable(): boolean&lt;br&gt;+ setPickupable(boolean)&lt;br&gt;+ findInRoom(Room, String): AdvObject&lt;br&gt;+ toString(): String" style="text;html=1;strokeColor=#4A90D9;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="320" y="160" width="220" height="172" as="geometry" />
+    </mxCell>
+    <!-- separatori AdvObject -->
+    <mxCell id="13" value="" style="line;strokeColor=#4A90D9;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="320" y="159" width="220" height="2" as="geometry" />
+    </mxCell>
+    <mxCell id="14" value="" style="line;strokeColor=#4A90D9;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="320" y="159" width="220" height="2" as="geometry" />
+    </mxCell>
+    <!-- bordo esterno AdvObject -->
+    <mxCell id="15" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#4A90D9;fillColor=none;verticalAlign=top;align=left;" vertex="1" parent="1">
+      <mxGeometry x="320" y="40" width="220" height="292" as="geometry" />
+    </mxCell>
+
+    <!-- AdvObjectContainer -->
+    <mxCell id="20" value="&lt;b&gt;AdvObjectContainer&lt;/b&gt;" style="text;html=1;strokeColor=#4A90D9;fillColor=#E8F4FB;align=center;verticalAlign=middle;spacingTop=-4;fontStyle=1;fontSize=13;rounded=1;" vertex="1" parent="1">
+      <mxGeometry x="320" y="420" width="220" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="21" value="- serialVersionUID: long&lt;br&gt;- objects: List&lt;AdvObject&gt;" style="text;html=1;strokeColor=#4A90D9;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="320" y="454" width="220" height="44" as="geometry" />
+    </mxCell>
+    <mxCell id="22" value="+ getObjects(): List&lt;AdvObject&gt;&lt;br&gt;+ addObject(AdvObject)" style="text;html=1;strokeColor=#4A90D9;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="320" y="498" width="220" height="44" as="geometry" />
+    </mxCell>
+    <mxCell id="23" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#4A90D9;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="320" y="420" width="220" height="122" as="geometry" />
+    </mxCell>
+
+    <!-- Inheritance AdvObject -> AdvObjectContainer -->
+    <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=block;endFill=0;strokeColor=#4A90D9;strokeWidth=2;" edge="1" source="23" target="15" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="241" value="&lt;i&gt;extends&lt;/i&gt;" style="text;html=1;align=center;fontSize=11;fontColor=#4A90D9;" vertex="1" parent="1">
+      <mxGeometry x="398" y="386" width="60" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- Room -->
+    <mxCell id="30" value="&lt;b&gt;Room&lt;/b&gt;" style="text;html=1;strokeColor=#27AE60;fillColor=#E9F7EF;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="700" y="40" width="220" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="31" value="- id: int&lt;br&gt;- locked: boolean&lt;br&gt;- name: String&lt;br&gt;- description: String&lt;br&gt;- exits: Map&lt;String, Room&gt;&lt;br&gt;- objects: List&lt;AdvObject&gt;&lt;br&gt;- imagePath: String" style="text;html=1;strokeColor=#27AE60;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="700" y="74" width="220" height="114" as="geometry" />
+    </mxCell>
+    <mxCell id="32" value="+ getId(): int&lt;br&gt;+ isLocked(): boolean&lt;br&gt;+ setLocked(boolean)&lt;br&gt;+ getName(): String&lt;br&gt;+ setName(String)&lt;br&gt;+ getDescription(): String&lt;br&gt;+ setDescription(String)&lt;br&gt;+ getImagePath(): String&lt;br&gt;+ setImagePath(String)&lt;br&gt;+ setExit(String, Room)&lt;br&gt;+ getExit(String): Room&lt;br&gt;+ getExits(): Map&lt;String,Room&gt;&lt;br&gt;+ getObjects(): List&lt;AdvObject&gt;&lt;br&gt;+ addObject(AdvObject)&lt;br&gt;+ removeObjectByName(String): AdvObject&lt;br&gt;+ setNorth(Room) / setSouth(Room)&lt;br&gt;+ setEast(Room) / setWest(Room)" style="text;html=1;strokeColor=#27AE60;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="700" y="188" width="220" height="244" as="geometry" />
+    </mxCell>
+    <mxCell id="33" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#27AE60;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="700" y="40" width="220" height="392" as="geometry" />
+    </mxCell>
+
+    <!-- Player -->
+    <mxCell id="40" value="&lt;b&gt;Player&lt;/b&gt;" style="text;html=1;strokeColor=#8E44AD;fillColor=#F5EEF8;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="700" y="510" width="220" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="41" value="- name: String&lt;br&gt;- currentRoom: Room&lt;br&gt;- inventory: Inventory" style="text;html=1;strokeColor=#8E44AD;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="700" y="544" width="220" height="56" as="geometry" />
+    </mxCell>
+    <mxCell id="42" value="+ Player()&lt;br&gt;+ Player(String)&lt;br&gt;+ getName(): String&lt;br&gt;+ setName(String)&lt;br&gt;+ getCurrentRoom(): Room&lt;br&gt;+ setCurrentRoom(Room)&lt;br&gt;+ getInventory(): Inventory" style="text;html=1;strokeColor=#8E44AD;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="700" y="600" width="220" height="116" as="geometry" />
+    </mxCell>
+    <mxCell id="43" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#8E44AD;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="700" y="510" width="220" height="206" as="geometry" />
+    </mxCell>
+
+    <!-- Inventory -->
+    <mxCell id="50" value="&lt;b&gt;Inventory&lt;/b&gt;" style="text;html=1;strokeColor=#D35400;fillColor=#FDEBD0;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="40" width="220" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="51" value="- objects: List&lt;AdvObject&gt;" style="text;html=1;strokeColor=#D35400;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="74" width="220" height="28" as="geometry" />
+    </mxCell>
+    <mxCell id="52" value="+ getObjects(): List&lt;AdvObject&gt;&lt;br&gt;+ add(AdvObject)&lt;br&gt;+ remove(AdvObject)&lt;br&gt;+ removeByName(String): AdvObject&lt;br&gt;+ getByName(String): AdvObject&lt;br&gt;+ containsByName(String): boolean&lt;br&gt;+ size(): int&lt;br&gt;+ isEmpty(): boolean&lt;br&gt;+ toString(): String" style="text;html=1;strokeColor=#D35400;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="102" width="220" height="144" as="geometry" />
+    </mxCell>
+    <mxCell id="53" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D35400;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="40" width="220" height="246" as="geometry" />
+    </mxCell>
+
+    <!-- Command -->
+    <mxCell id="60" value="&lt;b&gt;Command&lt;/b&gt;" style="text;html=1;strokeColor=#7F8C8D;fillColor=#F2F3F4;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="80" y="40" width="180" height="34" as="geometry" />
+    </mxCell>
+    <mxCell id="61" value="- word: String&lt;br&gt;- type: CommandType" style="text;html=1;strokeColor=#7F8C8D;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="80" y="74" width="180" height="44" as="geometry" />
+    </mxCell>
+    <mxCell id="62" value="+ Command(String, CommandType)&lt;br&gt;+ getWord(): String&lt;br&gt;+ getType(): CommandType" style="text;html=1;strokeColor=#7F8C8D;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="80" y="118" width="180" height="58" as="geometry" />
+    </mxCell>
+    <mxCell id="63" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#7F8C8D;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="80" y="40" width="180" height="136" as="geometry" />
+    </mxCell>
+
+    <!-- CommandType (enum) -->
+    <mxCell id="70" value="&lt;b&gt;&lt;i&gt;&amp;laquo;enum&amp;raquo;&lt;/i&gt;&lt;br&gt;CommandType&lt;/b&gt;" style="text;html=1;strokeColor=#7F8C8D;fillColor=#F2F3F4;align=center;verticalAlign=middle;fontStyle=3;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="80" y="260" width="180" height="44" as="geometry" />
+    </mxCell>
+    <mxCell id="71" value="NORTH, SOUTH, EAST, WEST&lt;br&gt;LOOK, PICK_UP, USE, OPEN&lt;br&gt;INVENTORY, HELP, END&lt;br&gt;SAVE, LOAD, UNKNOWN" style="text;html=1;strokeColor=#7F8C8D;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="80" y="304" width="180" height="72" as="geometry" />
+    </mxCell>
+    <mxCell id="72" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#7F8C8D;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="80" y="260" width="180" height="116" as="geometry" />
+    </mxCell>
+
+    <!-- GameObserver (interface) -->
+    <mxCell id="80" value="&lt;b&gt;&lt;i&gt;&amp;laquo;interface&amp;raquo;&lt;/i&gt;&lt;br&gt;GameObserver&lt;/b&gt;" style="text;html=1;strokeColor=#C0392B;fillColor=#FADBD8;align=center;verticalAlign=middle;fontStyle=3;fontSize=13;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="360" width="220" height="44" as="geometry" />
+    </mxCell>
+    <mxCell id="81" value="+ update(ParserOutput, Object)" style="text;html=1;strokeColor=#C0392B;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="404" width="220" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="82" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#C0392B;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="360" width="220" height="74" as="geometry" />
+    </mxCell>
+
+    <!-- ParserOutput (placeholder) -->
+    <mxCell id="90" value="&lt;b&gt;ParserOutput&lt;/b&gt;&lt;br&gt;&lt;i&gt;(parser package)&lt;/i&gt;" style="text;html=1;strokeColor=#95A5A6;fillColor=#EAECEE;align=center;verticalAlign=middle;fontStyle=2;fontSize=12;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="510" width="220" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="91" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#95A5A6;fillColor=none;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="1060" y="510" width="220" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ===== RELAZIONI ===== -->
+
+    <!-- Command usa CommandType (dependency) -->
+    <mxCell id="100" value="&lt;i&gt;usa&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;strokeColor=#7F8C8D;strokeWidth=1.5;" edge="1" source="63" target="72" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Room contiene AdvObject (aggregazione) -->
+    <mxCell id="101" value="&lt;i&gt;objects&lt;br&gt;0..*&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.2;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=ERmanyToOne;startFill=0;strokeColor=#27AE60;strokeWidth=1.5;" edge="1" source="33" target="15" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Room self-reference (exits) -->
+    <mxCell id="102" value="&lt;i&gt;exits&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;strokeColor=#27AE60;strokeWidth=1.5;curved=1;" edge="1" source="33" target="33" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="970" y="60" />
+          <mxPoint x="970" y="40" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Player ha currentRoom -->
+    <mxCell id="103" value="&lt;i&gt;currentRoom&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=open;endFill=0;strokeColor=#8E44AD;strokeWidth=1.5;" edge="1" source="43" target="33" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Player ha Inventory (composizione) -->
+    <mxCell id="104" value="&lt;i&gt;inventory&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=ERmandOne;startFill=1;strokeColor=#8E44AD;strokeWidth=1.5;" edge="1" source="43" target="53" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Inventory contiene AdvObject -->
+    <mxCell id="105" value="&lt;i&gt;objects 0..*&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=ERmanyToOne;startFill=0;strokeColor=#D35400;strokeWidth=1.5;" edge="1" source="53" target="15" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1170" y="320" />
+          <mxPoint x="570" y="320" />
+          <mxPoint x="570" y="186" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- AdvObjectContainer aggrega AdvObject -->
+    <mxCell id="106" value="&lt;i&gt;objects 0..*&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=ERmanyToOne;startFill=0;strokeColor=#4A90D9;strokeWidth=1.5;" edge="1" source="23" target="15" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="590" y="481" />
+          <mxPoint x="590" y="252" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- GameObserver usa ParserOutput -->
+    <mxCell id="107" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;dashed=1;strokeColor=#C0392B;strokeWidth=1.5;" edge="1" source="82" target="91" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
