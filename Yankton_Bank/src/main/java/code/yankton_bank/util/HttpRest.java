@@ -7,6 +7,7 @@ package code.yankton_bank.util;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -21,7 +22,8 @@ public final class HttpRest {
     public static String get(String urlStr, int timeoutMs) {
         HttpURLConnection conn = null;
         try {
-            URL url = new URL(urlStr);
+            URI uri = new URI(urlStr);
+            URL url = uri.toURL();
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(timeoutMs);
