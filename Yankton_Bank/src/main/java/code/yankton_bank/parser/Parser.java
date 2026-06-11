@@ -80,26 +80,26 @@ public class Parser {
 
     private CommandType guessType(String input) {
         if (input == null || input.isBlank()) return CommandType.UNKNOWN;
-
+    
+        // Comandi con uguaglianza esatta
         switch (input) {
-            case "nord":  return CommandType.NORTH;
-            case "sud":   return CommandType.SOUTH;
-            case "est":   return CommandType.EAST;
-            case "ovest": return CommandType.WEST;
+            case "nord" -> { return CommandType.NORTH; }
+            case "sud" -> { return CommandType.SOUTH; }
+            case "est" -> { return CommandType.EAST; }
+            case "ovest" -> { return CommandType.WEST; }
+            case "salva", "save" -> { return CommandType.SAVE; }
+            case "carica", "load" -> { return CommandType.LOAD; }
+            case "inventario" -> { return CommandType.INVENTORY; }
+            case "aiuto" -> { return CommandType.HELP; }
+            case "fine", "esci", "quit" -> { return CommandType.END; }
         }
-
-        if (input.equals("salva") || input.equals("save"))   return CommandType.SAVE;
-        if (input.equals("carica") || input.equals("load"))  return CommandType.LOAD;
-
-        if (input.startsWith("guarda"))      return CommandType.LOOK;
-        if (input.startsWith("prendi"))      return CommandType.PICK_UP;
-        if (input.startsWith("usa"))         return CommandType.USE;
-        if (input.startsWith("apri"))        return CommandType.OPEN;
-        if (input.startsWith("inventario"))  return CommandType.INVENTORY;
-        if (input.startsWith("aiuto"))       return CommandType.HELP;
-        if (input.startsWith("fine") || input.startsWith("esci") || input.startsWith("quit"))
-            return CommandType.END;
-
+    
+        // Comandi che iniziano con una stringa specifica
+        if (input.startsWith("guarda")) return CommandType.LOOK;
+        if (input.startsWith("prendi")) return CommandType.PICK_UP;
+        if (input.startsWith("usa")) return CommandType.USE;
+        if (input.startsWith("apri")) return CommandType.OPEN;
+    
         return CommandType.UNKNOWN;
     }
 
