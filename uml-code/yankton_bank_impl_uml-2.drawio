@@ -1,0 +1,264 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="Q7PQSbV1Ee0f3SgKa3IH" name="Pagina-1">
+    <mxGraphModel dx="2142" dy="2420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg" parent="1" style="shape=mxgraph.uml2.package;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;align=left;spacingLeft=8;" value="" vertex="1">
+          <mxGeometry height="1100" width="1560" x="47" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="iface" parent="1" style="swimlane;html=1;startSize=50;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;align=center;" value="&lt;i&gt;«interface»&lt;/i&gt;&lt;br/&gt;&lt;b&gt;GameObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="360" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="iface_m1" parent="iface" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="28" width="360" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gdesc" parent="1" style="swimlane;html=1;startSize=56;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;align=center;" value="&lt;i&gt;«implements GameDescription»&lt;/i&gt;&lt;br/&gt;&lt;b&gt;GameDesc&lt;/b&gt;" vertex="1">
+          <mxGeometry height="720" width="400" x="1190" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gdesc_fl" parent="gdesc" style="text;html=1;align=left;spacingLeft=6;fontStyle=2;fontSize=11;" value="Fields" vertex="1">
+          <mxGeometry height="20" width="400" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f1" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– player : Player" vertex="1">
+          <mxGeometry height="24" width="400" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f2" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– commands : List&lt;Command&gt;" vertex="1">
+          <mxGeometry height="24" width="400" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f3" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="– ingresso, stanzinoPulizie, salaSorveglianza, corridoio, ingressoCaveau, caveau, uscita : Room" vertex="1">
+          <mxGeometry height="36" width="400" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f4" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– lockerState : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f5" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– cameraState : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="164" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f6" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– securityState : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f7" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– dangerLVL : int" vertex="1">
+          <mxGeometry height="24" width="400" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_f8" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– score : int" vertex="1">
+          <mxGeometry height="24" width="400" y="236" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_sep" parent="gdesc" style="line;strokeColor=#9673a6;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="400" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="gdesc_ml" parent="gdesc" style="text;html=1;align=left;spacingLeft=6;fontStyle=2;fontSize=11;" value="Methods" vertex="1">
+          <mxGeometry height="20" width="400" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m1" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ init() : void" vertex="1">
+          <mxGeometry height="24" width="400" y="284" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m2" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ onEnter(r : Room) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="308" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_intro" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getIntro() : String" vertex="1">
+          <mxGeometry height="24" width="400" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_ending" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getEnding() : String" vertex="1">
+          <mxGeometry height="24" width="400" y="356" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_cmds" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getCommands() : List&lt;Command&gt;" vertex="1">
+          <mxGeometry height="24" width="400" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_player" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getPlayer() : Player" vertex="1">
+          <mxGeometry height="24" width="400" y="404" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_add" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ addScore(points : int) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="428" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_dec" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ decreaseScore(points : int) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="452" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_score" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getScore() : int" vertex="1">
+          <mxGeometry height="24" width="400" y="476" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_danger" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ incrementDanger(level : int) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_bl1" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ isLockerOpen() : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="524" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_bl2" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ isCameraEnabled() : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="548" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_bl3" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ isSecurityEnabled() : boolean" vertex="1">
+          <mxGeometry height="24" width="400" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_sl" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ setLocker(b : boolean) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="596" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r1" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getIngresso() : Room" vertex="1">
+          <mxGeometry height="24" width="200" x="200" y="596" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_sc" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ setCamera(b : boolean) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r2" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getStanzinoPulizie() : Room" vertex="1">
+          <mxGeometry height="24" width="200" x="200" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_ss" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ setSecurity(b : boolean) : void" vertex="1">
+          <mxGeometry height="24" width="400" y="644" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r3" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getSalaSorveglianza() : Room" vertex="1">
+          <mxGeometry height="24" width="200" x="200" y="644" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r4" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getCorridoio() : Room" vertex="1">
+          <mxGeometry height="24" width="200" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r5" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getIngCaveau() : Room" vertex="1">
+          <mxGeometry height="24" width="200" x="200" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="gd_m_r6" parent="gdesc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getCaveau() : Room" vertex="1">
+          <mxGeometry height="24" width="200" y="692" as="geometry" />
+        </mxCell>
+        <mxCell id="end_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;EndObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="130" width="220" x="660" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="eo_sep" parent="end_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="eo_m1" parent="end_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ finish(game : GameDesc, victory : boolean) : void  «static»" vertex="1">
+          <mxGeometry height="48" width="220" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="eo_m2" parent="end_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="220" y="92" as="geometry" />
+        </mxCell>
+        <mxCell id="help_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;HelpObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="120" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ho_sep" parent="help_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="ho_m1" parent="help_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;InventoryObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="660" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="io_sep" parent="inv_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="io_m1" parent="inv_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="220" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="look_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;LookObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="670" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_sep" parent="look_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="lo_m1" parent="look_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="move_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;MoveObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="670" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mo_sep" parent="move_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="mo_m1" parent="move_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="open_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;OpenObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="670" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="oo_sep" parent="open_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="oo_m1" parent="open_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="pick_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;PickUpObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="660" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="pko_sep" parent="pick_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="220" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="pko_m1" parent="pick_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="220" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="save_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;SaveObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="670" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="so_sep" parent="save_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="so_m1" parent="save_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="use_obs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;UseObserver&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="200" x="670" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="uo_sep" parent="use_obs" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="200" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="uo_m1" parent="use_obs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;whiteSpace=wrap;" value="+ update(p : ParserOutput, g : Object) : void" vertex="1">
+          <mxGeometry height="36" width="200" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="r_end" edge="1" parent="1" source="end_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_help" edge="1" parent="1" source="help_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_inv" edge="1" parent="1" source="inv_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_look" edge="1" parent="1" source="look_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_move" edge="1" parent="1" source="move_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_open" edge="1" parent="1" source="open_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_pick" edge="1" parent="1" source="pick_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_save" edge="1" parent="1" source="save_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_use" edge="1" parent="1" source="use_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#82b366;fontStyle=2;fontSize=10;" target="iface" value="«realizes»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_end" edge="1" parent="1" source="end_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_inv" edge="1" parent="1" source="inv_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_look" edge="1" parent="1" source="look_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_move" edge="1" parent="1" source="move_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_open" edge="1" parent="1" source="open_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_pick" edge="1" parent="1" source="pick_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_save" edge="1" parent="1" source="save_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_use" edge="1" parent="1" source="use_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=10;" target="gdesc" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d_mv_end" edge="1" parent="1" source="move_obs" style="edgeStyle=elbowEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontStyle=2;fontSize=10;" target="end_obs" value="«calls» EndObserver.finish()">
+          <mxGeometry relative="1" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pGnEHImp6u-AzJR_rtJu-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;caret-color: rgb(51, 51, 51); color: rgb(51, 51, 51); text-align: left;&quot;&gt;code.yankton_bank.impl&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="797" y="-80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,119 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="ZfhURYe0gN4i933C-L0j" name="Pagina-1">
+    <mxGraphModel dx="1928" dy="1126" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg" parent="1" style="shape=mxgraph.uml2.package;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;align=left;spacingLeft=8;" value="" vertex="1">
+          <mxGeometry height="880" width="1060" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dm" parent="1" style="swimlane;html=1;startSize=52;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;align=center;" value="&lt;i&gt;final class&lt;/i&gt;&lt;br/&gt;&lt;b&gt;DatabaseManager&lt;/b&gt;" vertex="1">
+          <mxGeometry height="290" width="360" x="340" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_f1" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– APP_DIR_NAME : String  «static final»" vertex="1">
+          <mxGeometry height="24" width="360" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_f2" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– SCOREBOARD_FILE : String  «static final»" vertex="1">
+          <mxGeometry height="24" width="360" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_f3" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– SAVE_PREFIX : String  «static final»" vertex="1">
+          <mxGeometry height="24" width="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_f4" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– SAVE_EXT : String  «static final»" vertex="1">
+          <mxGeometry height="24" width="360" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_f5" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;fontStyle=2;" value="– DatabaseManager()  «private constructor»" vertex="1">
+          <mxGeometry height="24" width="360" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_sep" parent="dm" style="line;strokeColor=#82b366;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="360" y="172" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_m1" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getAppDir() : Path  «static»" vertex="1">
+          <mxGeometry height="24" width="360" y="196" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_m2" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getScoreboardFile() : File  «static»" vertex="1">
+          <mxGeometry height="24" width="360" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="dm_m3" parent="dm" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ getSaveFile(slot : String) : File  «static»" vertex="1">
+          <mxGeometry height="24" width="360" y="244" as="geometry" />
+        </mxCell>
+        <mxCell id="gs" parent="1" style="swimlane;html=1;startSize=36;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;GameSaveDAO&lt;/b&gt;" vertex="1">
+          <mxGeometry height="380" width="380" x="80" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_f1" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– VERSION : String  «static final»" vertex="1">
+          <mxGeometry height="24" width="380" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_sep" parent="gs" style="line;strokeColor=#9673a6;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_m1" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ save(game : GameDesc, slot : String) : void  throws IOException" vertex="1">
+          <mxGeometry height="24" width="380" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_m2" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ loadInto(game : GameDesc, slot : String) : void  throws IOException" vertex="1">
+          <mxGeometry height="24" width="380" y="92" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_sep2" parent="gs" style="line;strokeColor=#9673a6;strokeStyle=dashed;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_ph" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;fontStyle=2;" value="private static helpers" vertex="1">
+          <mxGeometry height="24" width="380" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h1" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– getSaveFile(slot : String) : File" vertex="1">
+          <mxGeometry height="24" width="380" y="144" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h2" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– ensureParentDir(f : File) : void" vertex="1">
+          <mxGeometry height="24" width="380" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h3" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– safe(s : String) : String" vertex="1">
+          <mxGeometry height="24" width="380" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h4" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– parseInt(s : String, def : int) : int" vertex="1">
+          <mxGeometry height="24" width="380" y="216" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h5" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– splitCsv(s : String) : List&lt;String&gt;" vertex="1">
+          <mxGeometry height="24" width="380" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="gs_h6" parent="gs" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– findRoomBFS(start : Room, id : int, name : String) : Room" vertex="1">
+          <mxGeometry height="24" width="380" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="sc" parent="1" style="swimlane;html=1;startSize=36;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;align=center;" value="&lt;b&gt;ScoreboardDAO&lt;/b&gt;" vertex="1">
+          <mxGeometry height="180" width="460" x="580" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_f1" parent="sc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="– file : File" vertex="1">
+          <mxGeometry height="24" width="460" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_sep" parent="sc" style="line;strokeColor=#b85450;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="460" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_m1" parent="sc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ ScoreboardDAO()" vertex="1">
+          <mxGeometry height="24" width="460" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_m2" parent="sc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ append(name : String, score : int) : void" vertex="1">
+          <mxGeometry height="24" width="460" y="92" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_m3" parent="sc" style="text;html=1;align=left;spacingLeft=10;fontSize=12;verticalAlign=middle;" value="+ loadAll() : List&lt;String[]&gt;" vertex="1">
+          <mxGeometry height="24" width="460" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="dep_gs" edge="1" parent="1" source="gs" style="edgeStyle=elbowEdgeStyle;elbow=orthogonal;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;fontStyle=2;fontSize=11;labelBackgroundColor=#ffffff;" target="dm" value="uses getSaveFile()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="420" />
+              <mxPoint x="440" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dep_sc" edge="1" parent="1" source="sc" style="edgeStyle=elbowEdgeStyle;elbow=orthogonal;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontStyle=2;fontSize=11;labelBackgroundColor=#ffffff;" target="dm" value="uses getScoreboardFile()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="420" />
+              <mxPoint x="560" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P7ke1AB6nN489gzAsUat-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;caret-color: rgb(51, 51, 51); color: rgb(51, 51, 51); text-align: left;&quot;&gt;code.yankton_bank.database&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="70" x="530" y="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
